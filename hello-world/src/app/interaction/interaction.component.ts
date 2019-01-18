@@ -10,6 +10,13 @@ export class InteractionComponent implements OnInit {
   @Input() public parentData;
   @Output() public childEvent = new EventEmitter();
 
+  public name = "Steve Smith";
+  public msg = "Welcome to Angular 7";
+  public person = {
+    "firstname": 'John',
+    "lastname": 'Doe',
+  };
+
 
   constructor() { }
 
