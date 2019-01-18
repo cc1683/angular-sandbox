@@ -1,0 +1,42 @@
+<h3>Welcome to Structure Directive</h3>
+<div class="mt-2">
+  <p class="lead" *ngIf="show">Hello</p>
+  <button [ngClass]="{ 'btn-success': isShowing, 'btn-danger': !isShowing}" (click)="changeValue()" id="btn-status">Show</button>
+</div>
+<div class="mt-2 pt-2">
+  <button class="btn btn-sm btn-info m-1" (click)="switchUser(1)">Display John</button>
+  <button class="btn btn-sm btn-info m-1" (click)="switchUser(2)">Display Steve</button>
+  <div class="pt-1" *ngIf="userId == 1; then johnBlock; else steveBlock"></div>
+  <ng-template #johnBlock>
+    <p class="lead">Hey, name is John.</p>
+  </ng-template>
+  <ng-template #steveBlock>
+    <p class="lead">Hey, name is Steve.</p>
+  </ng-template>
+
+  <div class="mt-2 pt-2">
+    <h5>Switch case example</h5>
+    <div class="pt-1" [ngSwitch]="bgColor">
+      <button class="btn btn-sm btn-danger m-1" (click)="changeColor('red')">Red</button>
+      <button class="btn btn-sm btn-success m-1" (click)="changeColor('green')">Green</button>
+      <button class="btn btn-sm btn-warning m-1" (click)="changeColor('yellow')">Yellow</button>
+
+      <div class="mt-1" *ngSwitchCase="'red'">
+        <p class="lead" style="color: red">RED</p>
+      </div>
+      <div class="mt-1" *ngSwitchCase="'green'">
+        <p class="lead" style="color: green">GREEN</p>
+      </div>
+      <div class="mt-1" *ngSwitchCase="'yellow'">
+        <p class="lead" style="color: yellow">YELLOW</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-2 pt-2">
+    <h5>ngFor example</h5>
+    <div *ngFor="let name of nameList; index as i">
+      <p class="lead">{{ i }} - {{ name }}</p>
+    </div>
+  </div>
+</div>
