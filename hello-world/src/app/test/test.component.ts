@@ -30,6 +30,11 @@ import { Component, OnInit } from '@angular/core';
                   <button class="btn btn-sm btn-info" (click)="showMessage(userMessage.value)" >Show message</button>
                   <p class="lead"> {{ userMessage.value }} </p>
                 </div>
+                <div class="mt-2">
+                  <h3>Two ways binding</h3>
+                  <input type="text" [(ngModel)] = "username">
+                  <p class="lead"> {{ username }} </p>
+                </div>
               </div>
             `,
   styles: [`
@@ -57,6 +62,8 @@ export class TestComponent implements OnInit {
   public isDisabled = false;
 
   public greetingMessage = '';
+
+  public username = '';
 
   public messageClasses = {
     "text-success" : !this.hasError,
