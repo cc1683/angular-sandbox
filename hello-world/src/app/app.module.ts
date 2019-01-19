@@ -7,20 +7,25 @@ import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
 import { StrucComponent } from './struc/struc.component';
 import { InteractionComponent } from './interaction/interaction.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
+import { EmployeeService } from './employee.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     TestComponent,
     StrucComponent,
-    InteractionComponent
+    InteractionComponent,
+    EmployeeListComponent,
+    EmployeeDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
