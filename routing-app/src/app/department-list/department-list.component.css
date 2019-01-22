@@ -1,0 +1,9 @@
+ul {
+  list-style: none;
+  cursor: pointer;
+}
+
+li.selected {
+  font-size: 1.5em;
+}
+ 

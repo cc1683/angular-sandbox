@@ -1,0 +1,13 @@
+<div class="container">
+  <p class="lead">Your currect seleced department id: {{ departmentId }}</p>
+  <button class="btn btn-sm btn-secondary m-1" (click)="showOverview()">Overview</button>
+  <button class="btn btn-sm btn-secondary m-1" (click)="showContact()">Contact</button>
+
+  <router-outlet></router-outlet>
+
+<button class="btn btn-sm btn-success m-1" (click)="goPrevious()">Previous</button>
+<button class="btn btn-sm btn-success m-1" (click)="goNext()">Next</button>
+<div class="mt-2">
+  <button class="btn btn-sm btn-warning" (click)="gotoDepartments()">Back</button>
+</div>
+</div>
