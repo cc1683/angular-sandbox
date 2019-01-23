@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router'
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { DepartmentService } from '../department.service';
+
 
 @Component({
   selector: 'app-department-list',
@@ -8,23 +10,24 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router'
 })
 export class DepartmentListComponent implements OnInit {
 
-  public departments = [
-    {"id": 1, "name": "Production"},
-    {"id": 2, "name": "Marketing"},
-    {"id": 3, "name": "Accounting"},
-    {"id": 4, "name": "Human Resource"},
-    {"id": 5, "name": "Purchasing"},
-  ]
+  departments: any = [];
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+
+  constructor(private router: Router, private route: ActivatedRoute, private _departmentServices: DepartmentService) { }
 
   public selectedId;
+  public errorMsg;
+
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       let id = parseInt(params.get('id'));
       this.selectedId = id;
     });
+
+    this._departmentServices.getDepartment()
+    .subscribe(data => this.departments = data,
+               error => this.errorMsg = error);
   }
 
   onSelect(department) {
