@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router'
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { DepartmentService } from '../department.service';
+
 
 @Component({
   selector: 'app-department-detail',
@@ -8,26 +10,38 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router'
 })
 export class DepartmentDetailComponent implements OnInit {
   public departmentId;
+  departmentName: string;
+  departments: any = [];
+  public errorMsg;
 
-  constructor(private route: ActivatedRoute, private router: Router) { } 
+  constructor(private route: ActivatedRoute, private router: Router,  private _departmentServices: DepartmentService) { } 
 
   ngOnInit() {
     // let id = parseInt(this.route.snapshot.paramMap.get('id'));
     // this.departmentId = id;
+    this._departmentServices.getDepartment()
+    .subscribe(data => this.departments = data,
+               error => this.errorMsg = error);
+
     this.route.paramMap.subscribe((params: ParamMap) => {
       let id = parseInt(params.get('id'));
+      let name = params.get('name');
       this.departmentId = id;
+      this.departmentName = name;
     });
+
   }
 
   goPrevious() {
-    let previosId = this.departmentId - 1;
-    this.router.navigate(['/departments', previosId]);
+    let previousId = this.departmentId - 1;
+    let previousName = this.departments[previousId].name;
+    this.router.navigate(['/departments', previousId, previousName]);
   }
 
   goNext() {
     let nextId = this.departmentId + 1;
-    this.router.navigate(['/departments', nextId]);
+    let nextName = this.departments[nextId].name;
+    this.router.navigate(['/departments', nextId, nextName]);
   }
 
   gotoDepartments() {

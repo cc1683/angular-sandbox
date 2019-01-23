@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'departments', component: DepartmentListComponent},
   {path: 'employees', component: EmployeeListComponent},
   {
-    path: 'departments/:id', 
+    path: 'departments/:id/:name', 
     component: DepartmentDetailComponent,
     children: [
       {path: 'overview', component: DepartmentOverviewComponent},
